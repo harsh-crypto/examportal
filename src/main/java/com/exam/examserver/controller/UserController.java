@@ -24,10 +24,9 @@ public class UserController {
 	RoleRepository roleRepo;
 	
 	@RequestMapping(value="/createUser",method=RequestMethod.POST)
-	ResponseEntity<?> createUser(@RequestBody UserVO usr,@RequestBody Credential c){		
+	ResponseEntity<?> createUser(@RequestBody UserVO usr,@RequestBody Credential c) {
 		Role admin = roleRepo.findById(1).get();
 		String status = UserSvc.createUser(usr, admin, c);
-		return new ResponseEntity<>(status,HttpStatus.OK);
+		return new ResponseEntity<>(status, HttpStatus.OK);
 	}
-	
 }
