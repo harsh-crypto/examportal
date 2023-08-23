@@ -1,9 +1,6 @@
 package com.exam.examserver.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 public class Subject {
 	
@@ -16,6 +13,11 @@ public class Subject {
 	
 	@Column
 	String description;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="Subject_id")
+	Question question_id;
+
 
 	public Subject(Integer id, String name, String description) {
 		super();

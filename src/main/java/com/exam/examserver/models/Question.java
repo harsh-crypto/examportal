@@ -1,11 +1,6 @@
 package com.exam.examserver.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="questions")
@@ -30,6 +25,9 @@ public class Question {
 	@Column
 	private String difficulty;
 
+	@OneToMany(mappedBy="question_id")
+	Subject sub;
+
 	public Question(String statement, QuestionType typeOfQuestion, String answer, int marks, String difficulty) {
 		super();
 		this.statement = statement;
@@ -37,6 +35,10 @@ public class Question {
 		this.answer = answer;
 		this.marks = marks;
 		this.difficulty = difficulty;
+	}
+
+	public Question() {
+
 	}
 
 	public Integer getId() {
