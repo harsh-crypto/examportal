@@ -13,14 +13,10 @@ import com.exam.examserver.services.UserService;
 
 @SpringBootApplication
 public class ExamPortalApplication implements CommandLineRunner{
-
-	
 	@Autowired 
 	RoleRepository rp;
-	
 	@Autowired
 	UserService US;
-	
 	public static void main(String[] args) {
 		SpringApplication.run(ExamPortalApplication.class, args);
 	}

@@ -2,6 +2,9 @@ package com.exam.examserver.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+@Entity
+@Table(name="Subject")
 public class Subject {
 	
 	@Id 
@@ -14,9 +17,8 @@ public class Subject {
 	@Column
 	String description;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="Subject_id")
-	Question question_id;
+	@ManyToMany(mappedBy = "sub")
+	List<Question> question_id;
 
 
 	public Subject(Integer id, String name, String description) {

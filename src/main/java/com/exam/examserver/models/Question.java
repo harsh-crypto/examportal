@@ -2,6 +2,8 @@ package com.exam.examserver.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="questions")
 public class Question {
@@ -25,8 +27,15 @@ public class Question {
 	@Column
 	private String difficulty;
 
-	@OneToMany(mappedBy="question_id")
-	Subject sub;
+	@Column
+	private String QuestionIdentifier;
+	@ManyToMany
+	@JoinTable(
+			name = "Question_and_subject",
+			joinColumns = @JoinColumn(name="Subject_id"),
+			inverseJoinColumns = @JoinColumn(name="Question_id")
+	)
+	private List<Subject> sub;
 
 	public Question(String statement, QuestionType typeOfQuestion, String answer, int marks, String difficulty) {
 		super();
@@ -37,6 +46,14 @@ public class Question {
 		this.difficulty = difficulty;
 	}
 
+	public String QuestionIdentifier() {
+		return QuestionIdentifier;
+	}
+
+	public Question setQuestionIdentifier(String questionIdentifier) {
+		QuestionIdentifier = questionIdentifier;
+		return this;
+	}
 	public Question() {
 
 	}

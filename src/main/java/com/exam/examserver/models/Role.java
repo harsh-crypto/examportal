@@ -2,20 +2,12 @@ package com.exam.examserver.models;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 @Entity
 @Table(name="role")
 public class Role {
-
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,9 +19,9 @@ public class Role {
 		return roleName;
 	}
 
-	@ManyToOne(cascade=CascadeType.MERGE)
-	private List<AppUser> appuser; 
-	
+	@OneToMany(cascade=CascadeType.MERGE)
+	private List<AppUser> user_id;
+
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}

@@ -2,15 +2,10 @@ package com.exam.examserver.models;
 
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany; 
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="User")
 public class AppUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,7 +24,7 @@ public class AppUser {
 	private String phone; 
 	@Column(nullable=false)
 	private boolean enabled;
-	
+	@ManyToOne
     @JoinColumn(name = "user_id")
 	private Role roles;
 	
