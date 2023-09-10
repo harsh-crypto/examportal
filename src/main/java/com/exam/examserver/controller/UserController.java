@@ -22,7 +22,12 @@ public class UserController {
 	
 	@Autowired
 	RoleRepository roleRepo;
-	
+
+	public UserController(UserService userSvc,RoleRepository RR) {
+		this.UserSvc = userSvc;
+		this.roleRepo=RR;
+	}
+
 	@RequestMapping(value="/createUser",method=RequestMethod.POST)
 	ResponseEntity<?> createUser(@RequestBody UserVO usr,@RequestBody Credential c) {
 		Role admin = roleRepo.findById(1).get();

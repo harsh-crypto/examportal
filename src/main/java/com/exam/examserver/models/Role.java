@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="role")
 public class Role {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -30,6 +30,14 @@ public class Role {
 		
 	}
 
+	public Long id() {
+		return id;
+	}
+
+	public Role setId(Long id) {
+		this.id = id;
+		return this;
+	}
 	public Role(Long id, String roleName) {
 		super();
 		this.id = id;

@@ -10,12 +10,12 @@ import java.util.List;
 
 @Repository
 public interface QuestionRepo extends JpaRepository<Question,Integer> {
-    @Query(value="Select * from question where QuestionIdentifier=:QID")
+    @Query(value="Select * from question where QuestionIdentifier=:QID",nativeQuery = true)
     Question findByQID(@Param("QID") String QID);
 
-    @Query(value="Select * from question where sub=(select id from Subject where subName=:name)")
+    @Query(value="Select * from question where sub=(select id from Subject where subName=:name)",nativeQuery = true)
     List<Question> findBySubject(@Param("name") String name);
 
-    @Query(value="Select * from question where typeOfQuestion=:toq")
+    @Query(value="Select * from question where typeOfQuestion=:toq",nativeQuery = true)
     List<Question> findByTOQ(@Param("toq") String TOQ);
 }
