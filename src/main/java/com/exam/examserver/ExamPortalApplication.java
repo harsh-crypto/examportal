@@ -33,7 +33,7 @@ public class ExamPortalApplication implements CommandLineRunner{
 		rp.save(r4);
 		Credential c = new Credential("Username","password");
 		UserVO user = new UserVO("FirstUser", "Harsh", "Iccha", "Micha", "teriIccha@gmail.com","000-8975746", true);
-		US.createUser(user, r1,c);
+		US.createUser(user, r1,c,false);
 	}
 	
 	

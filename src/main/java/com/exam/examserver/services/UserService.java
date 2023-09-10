@@ -8,6 +8,9 @@ import com.exam.examserver.models.Role;
 
 @Service
 public interface UserService {
-	public String createUser(UserVO usr, Role role,Credential c);
+
+	public String createUser(UserVO usr, Role role,Credential c,boolean isInstitutional);
+
+	public String AddCredentialsToUser(int ID, Credential c);
 	String RandomUsername();
 }

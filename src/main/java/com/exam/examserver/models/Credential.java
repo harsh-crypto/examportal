@@ -14,21 +14,15 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="credentials")
 public class Credential {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer id;
-	
 	@Column
 	String username;
-	
 	@Column
 	String password;
-	
-	
 	@ManyToMany(mappedBy="credentials")
 	Set<AppUser> usr;
-
 	public Credential(String username, String password) {
 		super();
 		this.username = username;

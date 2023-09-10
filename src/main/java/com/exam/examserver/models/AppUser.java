@@ -27,13 +27,22 @@ public class AppUser {
 	@ManyToOne
     @JoinColumn(name = "user_id")
 	private Role roles;
-	
 	@ManyToMany(targetEntity=Credential.class,cascade= {CascadeType.PERSIST})
 	@JoinTable(
 			name="User_credentials",
 			joinColumns= {@JoinColumn(name="user_id")},
 			inverseJoinColumns= {@JoinColumn(name="credential_id")})
 	Set<Credential> credentials;
+	@Column
+	boolean institutionUser;
+	public boolean institutionUser() {
+		return institutionUser;
+	}
+
+	public AppUser setInstitutionUser(boolean institutionUser) {
+		this.institutionUser = institutionUser;
+		return this;
+	}
 
 	public AppUser() 
 	{

@@ -1,66 +1,62 @@
 package com.exam.examserver.VO;
 
 import com.exam.examserver.models.QuestionType;
-import jakarta.persistence.Column;
 
 public class questionVO {
-
-
-
-    private String statement;
-    private QuestionType typeOfQuestion;
-    private String answer;
-    private int marks;
-    private String difficulty;
+    private String Statement;
+    private QuestionType TypeOfQuestion;
+    private String Answer;
+    private int Marks;
+    private String Difficulty;
     public questionVO(String statement, QuestionType typeOfQuestion, String answer, int marks, String difficulty) {
-        this.statement = statement;
-        this.typeOfQuestion = typeOfQuestion;
-        this.answer = answer;
-        this.marks = marks;
-        this.difficulty = difficulty;
+        this.Statement = statement;
+        this.TypeOfQuestion = typeOfQuestion;
+        this.Answer = answer;
+        this.Marks = marks;
+        this.Difficulty = difficulty;
     }
     public String statement() {
-        return statement;
+        return Statement;
     }
 
     public questionVO setStatement(String statement) {
-        this.statement = statement;
+        this.Statement = statement;
         return this;
     }
 
     public QuestionType typeOfQuestion() {
-        return typeOfQuestion;
+        return TypeOfQuestion;
     }
 
     public questionVO setTypeOfQuestion(QuestionType typeOfQuestion) {
-        this.typeOfQuestion = typeOfQuestion;
+        this.TypeOfQuestion = typeOfQuestion;
         return this;
     }
 
     public String answer() {
-        return answer;
+        return Answer;
     }
 
     public questionVO setAnswer(String answer) {
-        this.answer = answer;
+        this.Answer = answer;
         return this;
     }
 
     public int marks() {
-        return marks;
+        return Marks;
     }
 
     public questionVO setMarks(int marks) {
-        this.marks = marks;
+        this.Marks = marks;
         return this;
     }
 
     public String difficulty() {
-        return difficulty;
+        return Difficulty;
     }
 
     public questionVO setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
+        this.Difficulty = difficulty;
         return this;
     }
 }

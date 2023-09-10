@@ -12,7 +12,7 @@ public class Subject {
 	Integer id;
 	
 	@Column(nullable = false)
-	String name;
+	String subName;
 	
 	@Column
 	String description;
@@ -21,11 +21,11 @@ public class Subject {
 	List<Question> question_id;
 
 
-	public Subject(Integer id, String name, String description) {
+	public Subject(Integer id, String subName, String description) {
 		super();
 		this.id = id;
 		
-		this.name = name;
+		this.subName = subName;
 		
 		this.description = description;
 		
@@ -39,12 +39,12 @@ public class Subject {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getSubName() {
+		return subName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSubName(String subName) {
+		this.subName = subName;
 	}
 
 	public String getDescription() {
@@ -57,7 +57,7 @@ public class Subject {
 
 	@Override
 	public String toString() {
-		return "Subject [id=" + id + ", name=" + name + ", description=" + description + "]";
+		return "Subject [id=" + id + ", name=" + subName + ", description=" + description + "]";
 	}
 	
 
