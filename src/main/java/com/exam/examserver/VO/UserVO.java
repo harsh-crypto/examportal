@@ -9,6 +9,8 @@ public class UserVO {
 	private String email;
 	private String phone; 
 	private boolean enabled;
+
+	public UserVO(){}
 	public UserVO(Long id, String username, String password, String lastname, String firstName, String email,
 			String phone, boolean enabled) {
 		super();

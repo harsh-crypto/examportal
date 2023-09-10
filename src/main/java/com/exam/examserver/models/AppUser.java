@@ -10,7 +10,7 @@ public class AppUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	@Column(nullable=false, unique=true)
+	@Column(name="username",nullable=false, unique=true)
 	private String username;
 	@Column
 	private String password;
@@ -33,17 +33,6 @@ public class AppUser {
 			joinColumns= {@JoinColumn(name="user_id")},
 			inverseJoinColumns= {@JoinColumn(name="credential_id")})
 	Set<Credential> credentials;
-	@Column
-	boolean institutionUser;
-	public boolean institutionUser() {
-		return institutionUser;
-	}
-
-	public AppUser setInstitutionUser(boolean institutionUser) {
-		this.institutionUser = institutionUser;
-		return this;
-	}
-
 	public AppUser() 
 	{
 		

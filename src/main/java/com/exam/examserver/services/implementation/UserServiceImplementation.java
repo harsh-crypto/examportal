@@ -1,11 +1,12 @@
 package com.exam.examserver.services.implementation;
-import java.nio.charset.Charset;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
+import com.exam.examserver.VO.CredentialsVO;
 import com.exam.examserver.repository.CredentialRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.exam.examserver.VO.UserVO;
@@ -28,14 +29,27 @@ public class UserServiceImplementation implements UserService {
 	CredentialRepo CR;
 	
 	//Throw a null user when no user created and else will throw a user same as userVo
-	
-	public String createUser(UserVO usr, Role role,Credential c,boolean isInstitutional) {
-		Set<Credential> cred = new HashSet<>();
-		cred.add(c);
-		AppUser user = new AppUser(usr.getId(), usr.getUsername(), usr.getPassword(), usr.getLastname(), usr.getFirstName(), usr.getEmail(),usr.getPhone(), usr.isEnabled(),role);
-		user.setCredentials(cred);
+	public AppUser getUserbyID(int ID){
+		return UserRepo.findById(ID).get();
+	}
+	@Override
+	public String createUser(UserVO usr, Role role, CredentialsVO c) {
+		Set<Credential> cred = new HashSet<Credential>();
+		Credential credential = new Credential();
+		credential.setUsername(c.getUsername());
+		credential.setPassword(c.getPassword());
+		credential = CR.save(credential); // saving the credentials
+		AppUser user = new AppUser();
+		user.setUsername(user.getUsername());
+		user.setEmail(usr.getEmail());
+		user.setFirstName(usr.getFirstName());
+		user.setLastname(usr.getLastname());
 		user.setRoles(role);
-		user.setInstitutionUser(isInstitutional);
+		user.setPhone(usr.getPhone());
+		user.setEnabled(true);
+		user.setRoles(role);
+		cred.add(credential);
+		user.setCredentials(cred);		// mapping the credentials
 		try{
 			UserRepo.save(user);
 		}
@@ -52,11 +66,16 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
+	public List<AppUser> getAllUsers(int pages, int items) {
+		Pageable pg = PageRequest.of(pages,items);
+		return UserRepo.findAll(pg).getContent();
+	}
+
+	@Override
 	public String AddCredentialsToUser(int ID, Credential c) {
 		AppUser US = UserRepo.findById(ID).get();
 		Set<Credential> CC = US.getCredentials();
-		if(US.institutionUser())CC.add(c);
-		else return "cannot save the credentials";
+		CC.add(c);
 		UserRepo.save(US);
 		return "Credentials Stored"+c.toString();
 	}
@@ -68,7 +87,7 @@ public class UserServiceImplementation implements UserService {
 		byte[] array = new byte[7];
 		while(t) {
 			new Random().nextBytes(array);
-			String generatedString  = new String(array, Charset.forName("UTF-8"));
+			String generatedString  = new String(array, StandardCharsets.UTF_8);
 			try {
 				UserRepo.findByUsername(generatedString);
 			}catch(Exception e) {

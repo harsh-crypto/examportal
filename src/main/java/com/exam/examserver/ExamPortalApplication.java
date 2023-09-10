@@ -1,5 +1,6 @@
 package com.exam.examserver;
 
+import com.exam.examserver.VO.CredentialsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -31,10 +32,10 @@ public class ExamPortalApplication implements CommandLineRunner{
 		rp.save(r2);
 		rp.save(r3);
 		rp.save(r4);
-		Credential c = new Credential("Username","password");
+		CredentialsVO c = new CredentialsVO();
+		c.setUsername("Username");
+		c.setPassword("password");
 		UserVO user = new UserVO("FirstUser", "Harsh", "Iccha", "Micha", "teriIccha@gmail.com","000-8975746", true);
-		US.createUser(user, r1,c,false);
+		US.createUser(user, r1,c);
 	}
-	
-	
 }

@@ -23,6 +23,8 @@ public class Credential {
 	String password;
 	@ManyToMany(mappedBy="credentials")
 	Set<AppUser> usr;
+
+	public Credential(){}
 	public Credential(String username, String password) {
 		super();
 		this.username = username;
